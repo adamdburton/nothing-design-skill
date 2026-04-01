@@ -29,16 +29,15 @@ cp -r nothing-design-skill/nothing-design ~/.claude/skills/
 
 ### Other LLMs (ChatGPT, Gemini, Cursor, etc.)
 
-Paste the contents of `nothing-design/SKILL.md` as a system prompt or custom instruction. Include the reference files as additional context when needed.
+Paste the contents of `nothing-design/SKILL.md` as a system prompt or custom instruction.
 
 ## What's inside
 
+Everything is in a single file:
+
 | File | |
 |------|---|
-| `SKILL.md` | Design philosophy, craft rules, workflow |
-| `references/tokens.md` | Colors, fonts, spacing, Tailwind v4 `@theme` tokens, motion |
-| `references/components.md` | Buttons, cards, lists, tables, overlays |
-| `references/platform-mapping.md` | Tailwind v4 `@theme`, plain CSS, SwiftUI, React output mappings |
+| `SKILL.md` | Design philosophy, craft rules, tokens, components, platform output — everything |
 
 ## License
 
