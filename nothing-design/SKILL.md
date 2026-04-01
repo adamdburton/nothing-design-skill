@@ -1,11 +1,6 @@
----
-name: nothing-design
-description: This skill should be used when the user explicitly says "Nothing style", "Nothing design", "/nothing-design", or directly asks to use/apply the Nothing design system. NEVER trigger automatically for generic UI or design tasks.
-version: 3.0.0
-allowed-tools: [Read, Write, Edit, Glob, Grep]
----
-
 # Nothing-Inspired UI/UX Design System
+
+**When to apply:** Only when the user explicitly says "Nothing style", "Nothing design", or directly asks to use/apply the Nothing design system. NEVER trigger automatically for generic UI or design tasks.
 
 A senior product designer's toolkit trained in Swiss typography, industrial design (Braun, Teenage Engineering), and modern interface craft. Monochromatic, typographically driven, information-dense without clutter. Dark and light mode with equal rigor.
 
@@ -172,6 +167,6 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 
 For detailed token values, component specs, and platform-specific guidance:
 
-- **`references/tokens.md`** — Fonts, type scale, color system (dark + light), spacing scale, grid, motion, iconography, dot-matrix motif
+- **`references/tokens.md`** — Fonts, type scale, color system (dark + light), spacing scale, Tailwind v4 token reference, motion, iconography, dot-matrix motif
 - **`references/components.md`** — Cards, buttons, inputs, lists, tables, nav, tags, segmented controls, progress bars, charts, widgets, overlays, state patterns
-- **`references/platform-mapping.md`** — HTML/CSS, SwiftUI, React/Tailwind, Paper output conventions
+- **`references/platform-mapping.md`** — HTML/Tailwind v4 (`@theme`), plain CSS, SwiftUI, React/Tailwind, Paper output conventions

@@ -93,19 +93,52 @@
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--space-2xs` | 2px | Optical adjustments only |
-| `--space-xs` | 4px | Icon-to-label gaps, tight padding |
-| `--space-sm` | 8px | Component internal spacing |
-| `--space-md` | 16px | Standard padding, element gaps |
-| `--space-lg` | 24px | Group separation |
-| `--space-xl` | 32px | Section margins |
-| `--space-2xl` | 48px | Major section breaks |
-| `--space-3xl` | 64px | Page-level vertical rhythm |
-| `--space-4xl` | 96px | Hero breathing room |
+| `--spacing-2xs` | 2px | Optical adjustments only |
+| `--spacing-xs` | 4px | Icon-to-label gaps, tight padding |
+| `--spacing-sm` | 8px | Component internal spacing |
+| `--spacing-md` | 16px | Standard padding, element gaps |
+| `--spacing-lg` | 24px | Group separation |
+| `--spacing-xl` | 32px | Section margins |
+| `--spacing-2xl` | 48px | Major section breaks |
+| `--spacing-3xl` | 64px | Page-level vertical rhythm |
+| `--spacing-4xl` | 96px | Hero breathing room |
 
 ---
 
-## 4. MOTION & INTERACTION
+## 4. TAILWIND V4 TOKEN REFERENCE
+
+All tokens are defined with the `@theme` directive (see `platform-mapping.md` Section 1 for the full block). Token naming follows Tailwind v4 conventions so they resolve directly to utility classes:
+
+| Category | CSS variable | Example utility |
+|----------|-------------|-----------------|
+| Color | `--color-black` | `bg-black`, `text-black` |
+| Color | `--color-surface` | `bg-surface` |
+| Color | `--color-surface-raised` | `bg-surface-raised` |
+| Color | `--color-border` | `border-border` |
+| Color | `--color-border-visible` | `border-border-visible` |
+| Color | `--color-text-disabled` | `text-text-disabled` |
+| Color | `--color-text-secondary` | `text-text-secondary` |
+| Color | `--color-text-primary` | `text-text-primary` |
+| Color | `--color-text-display` | `text-text-display` |
+| Color | `--color-accent` | `text-accent`, `border-accent` |
+| Color | `--color-success` | `text-success` |
+| Color | `--color-warning` | `text-warning` |
+| Color | `--color-interactive` | `text-interactive` |
+| Font | `--font-display` | `font-display` |
+| Font | `--font-body` | `font-body` |
+| Font | `--font-mono` | `font-mono` |
+| Spacing | `--spacing-xs` | `p-xs`, `gap-xs`, `mt-xs` |
+| Spacing | `--spacing-sm` | `p-sm`, `gap-sm` |
+| Spacing | `--spacing-md` | `p-md`, `gap-md` |
+| Spacing | `--spacing-lg` | `p-lg`, `gap-lg` |
+| Spacing | `--spacing-xl` | `p-xl`, `gap-xl` |
+| Spacing | `--spacing-2xl` | `p-2xl`, `mt-2xl` |
+| Spacing | `--spacing-3xl` | `mt-3xl` |
+| Spacing | `--spacing-4xl` | `mt-4xl` |
+
+---
+
+## 5. MOTION & INTERACTION
 
 - **Duration:** 150–250ms micro, 300–400ms transitions
 - **Easing:** `cubic-bezier(0.25, 0.1, 0.25, 1)` — subtle ease-out. No spring/bounce.
@@ -115,7 +148,7 @@
 
 ---
 
-## 5. ICONOGRAPHY
+## 6. ICONOGRAPHY
 
 - Monoline, 1.5px stroke, no fill. 24x24 base, 20x20 live area. Round caps/joins.
 - Color inherits text color. Max 5–6 strokes.
@@ -123,18 +156,18 @@
 
 ---
 
-## 6. DOT-MATRIX MOTIF
+## 7. DOT-MATRIX MOTIF
 
 **When to use:** Hero typography (Doto), decorative grid backgrounds, dot-grid data viz, loading indicators, empty state illustrations.
 
 ### CSS Implementation
 ```css
 .dot-grid {
-  background-image: radial-gradient(circle, var(--border-visible) 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--color-border-visible) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 .dot-grid-subtle {
-  background-image: radial-gradient(circle, var(--border) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(circle, var(--color-border) 0.5px, transparent 0.5px);
   background-size: 12px 12px;
 }
 ```
