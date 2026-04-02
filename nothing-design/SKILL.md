@@ -237,7 +237,7 @@ All sizes except `label` and `btn` map directly to Tailwind defaults — use sta
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--color-accent` | `#D71921` | Signal light: active states, destructive, urgent. One per screen. Never decorative. |
-| `--color-accent-subtle` | `rgba(215,25,33,0.15)` | Accent tint backgrounds |
+| `--color-accent-subtle` | `bg-accent/15` | Accent tint backgrounds (use Tailwind opacity modifier) |
 | `--color-success` | `#4A9E5C` | Confirmed, completed, connected |
 | `--color-warning` | `#D4A843` | Caution, pending, degraded |
 | `--color-interactive` | `#007AFF` / `#5B9BF6` | Tappable text: links, picker values. Not for buttons. |
@@ -413,7 +413,7 @@ Always pair with numeric readout. Bar = proportion, number = precision.
 
 No shadows. Layering through background contrast and borders.
 
-- **Modals:** Backdrop `bg-black/80`, dialog `bg-surface border border-border-visible rounded-2xl`, centered `max-w-modal`. Close: `[ X ]` top-right ghost button.
+- **Modals:** Backdrop `bg-black/80`, dialog `bg-surface border border-border-visible rounded-2xl`, centered `max-w-[30rem]`. Close: `[ X ]` top-right ghost button.
 - **Bottom sheets:** `bg-surface`, `w-8 h-0.5` handle bar centered, `rounded-t-2xl`, drag-to-dismiss. Full-page sheets: title centered + dismiss button right, sections with `text-text-secondary` headings.
 - **Dropdowns:** `bg-surface-raised border border-border-visible rounded-lg`, items `min-h-11`. Selected: left `border-l-2 border-accent`. No shadow.
 - **Toasts:** None. Use inline status text: `[SAVED]`, `[ERROR: ...]`. `font-mono text-xs`, near trigger.
@@ -460,8 +460,8 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
   --tracking-wider:    0.06em;  /* labels / buttons   (Tailwind default:  0.05em) */
   /* tracking-normal (0em) and tracking-widest (0.1em): use Tailwind defaults  */
 
-  /* ── Max width ──────────────────────────────────────────────────────────── */
-  --max-width-modal: 30rem;     /* 480px — modal dialog max width           */
+  /* ── Max width — NO custom tokens needed ────────────────────────────────── */
+  /* 30rem (480px) has no standard Tailwind match — use max-w-[30rem] directly */
 
   /* ── Colors (dark mode defaults) ──────────────────────────────────────── */
   /* Nothing's grayscale is a specific pitch-black ramp; not a Tailwind     */
@@ -476,7 +476,7 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
   --color-text-primary:   #E8E8E8;   /* cf. neutral-200 (#e5e5e5)           */
   --color-text-display:   #FFFFFF;   /* ≈ Tailwind `white`                  */
   --color-accent:         #D71921;   /* Nothing brand red; cf. red-600 (#dc2626)  */
-  --color-accent-subtle:  rgba(215, 25, 33, 0.15);
+  /* --color-accent-subtle: not needed in Tailwind — use bg-accent/15 opacity modifier */
   --color-success:        #4A9E5C;   /* cf. green-600 (#16a34a)             */
   --color-warning:        #D4A843;   /* cf. amber-400 (#fbbf24)             */
   --color-interactive:    #5B9BF6;   /* dark mode; cf. blue-400 (#60a5fa)   */
@@ -528,7 +528,8 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
 ```
 
 **Utility class conventions:**
-- Colors: `bg-surface`, `bg-surface-raised`, `text-text-primary`, `text-text-secondary`, `text-text-display`, `text-text-disabled`, `border-border`, `border-border-visible`, `text-accent`, `text-success`, `text-warning`
+- Colors: `bg-surface`, `bg-surface-raised`, `text-text-primary`, `text-text-secondary`, `text-text-display`, `text-text-disabled`, `border-border`, `border-border-visible`, `text-accent`, `text-success`, `text-warning`; accent tint: `bg-accent/15`
+- Max widths: no custom tokens — use arbitrary `max-w-[30rem]` for modals
 - Fonts: `font-display` (Doto), `font-body` (Space Grotesk), `font-mono` (Space Mono)
 - Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-2xs`
 - Letter spacing: standard utilities (values overridden in `@theme`) — `tracking-tighter tracking-tight tracking-normal tracking-wide tracking-wider tracking-widest`
