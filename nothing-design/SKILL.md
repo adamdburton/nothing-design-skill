@@ -27,8 +27,8 @@ Every screen has exactly **three layers of importance.** Not two, not five. Thre
 
 | Layer | What | How |
 |-------|------|-----|
-| **Primary** | The ONE thing the user sees first. A number, a headline, a state. | Doto or Space Grotesk at display size. `--color-text-display`. 48–96px breathing room. |
-| **Secondary** | Supporting context. Labels, descriptions, related data. | Space Grotesk at body/subheading. `--color-text-primary`. Grouped tight (8–16px) to the primary. |
+| **Primary** | The ONE thing the user sees first. A number, a headline, a state. | Doto or Space Grotesk at display size. `--color-text-display`. `py-12`–`py-24` breathing room. |
+| **Secondary** | Supporting context. Labels, descriptions, related data. | Space Grotesk at body/subheading. `--color-text-primary`. Grouped tight (`gap-2`–`gap-4`) to the primary. |
 | **Tertiary** | Metadata, navigation, system info. Visible but never competing. | Space Mono at caption/label. `--color-text-secondary` or `--color-text-disabled`. ALL CAPS. Pushed to edges or bottom. |
 
 **The test:** Squint at the screen. Can you still tell what's most important? If two things compete, one needs to shrink, fade, or move.
@@ -59,10 +59,10 @@ Think of it as a budget. Every additional size/weight costs visual coherence. Be
 Spacing is the primary tool for communicating relationships.
 
 ```
-Tight (4–8px)   = "These belong together" (icon + label, number + unit)
-Medium (16px)    = "Same group, different items" (list items, form fields)
-Wide (32–48px)   = "New group starts here" (section breaks)
-Vast (64–96px)   = "This is a new context" (hero to content, major divisions)
+Tight  (gap-1–gap-2 / p-1–p-2)    = "These belong together" (icon + label, number + unit)
+Medium (gap-4 / p-4)               = "Same group, different items" (list items, form fields)
+Wide   (gap-8–gap-12 / mt-8–mt-12) = "New group starts here" (section breaks)
+Vast   (gap-16–gap-24 / py-16–py-24) = "This is a new context" (hero to content, major divisions)
 ```
 
 **If a divider line is needed, the spacing is probably wrong.** Dividers are a symptom of insufficient spacing contrast. Use them only in data-dense lists where items are structurally identical.
@@ -111,8 +111,8 @@ Balance heavy elements with more empty space, not with more heavy elements.
 ### 2.8 The Nothing Vibe
 
 1. **Confidence through emptiness.** Large uninterrupted background areas. Resist filling space.
-2. **Precision in the small things.** Letter-spacing, exact gray values, 4px gaps. Micro-decisions compound into craft.
-3. **Data as beauty.** `36GB/s` in Space Mono at 48px IS the visual. No illustrations needed.
+2. **Precision in the small things.** Letter-spacing, exact gray values, `gap-1` gaps. Micro-decisions compound into craft.
+3. **Data as beauty.** `36GB/s` in Space Mono (`text-5xl`) IS the visual. No illustrations needed.
 4. **Mechanical honesty.** Controls look like controls. A toggle = physical switch. A gauge = instrument.
 5. **One moment of surprise.** A dot-matrix headline. A circular widget. A red dot. Restraint makes the one expressive moment powerful.
 6. **Percussive, not fluid.** Imagine UI sounds: click not swoosh, tick not chime. Design transitions that feel mechanical and precise.
@@ -146,7 +146,7 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 - No filled icons, multi-color icons, or emoji as UI
 - No parallax, scroll-jacking, or gratuitous animation
 - No spring/bounce easing. Use subtle ease-out only.
-- No border-radius > 16px on cards. Buttons are pill (999px) or technical (4–8px).
+- No border-radius > `rounded-2xl` on cards. Buttons are pill (`rounded-full`) or technical (`rounded`–`rounded-lg`).
 - Data visualization: differentiate with **opacity** (100%/60%/30%) or **pattern** (solid/striped/dotted) before introducing color.
 
 ---
@@ -193,7 +193,7 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 
 ### Type Scale
 
-All sizes except `label` map directly to Tailwind defaults — **no custom font-size tokens needed**. Use standard `text-*` utilities. Only `label` (11px) requires an arbitrary value or custom token.
+All sizes except `label` map directly to Tailwind defaults — **no custom font-size tokens needed**. Use standard `text-*` utilities. Only `label` (11px) requires a custom token — defined as `text-2xs` in `@theme`.
 
 | Role | Size | Tailwind utility | Line Height | Letter Spacing | Use |
 |------|------|-----------------|-------------|----------------|-----|
@@ -209,8 +209,8 @@ All sizes except `label` map directly to Tailwind defaults — **no custom font-
 
 ### Typographic Rules
 
-- **Doto:** 36px+ only, tight tracking, never for body text
-- **Labels:** Always Space Mono, ALL CAPS, `tracking-label`–`tracking-widest` (0.06–0.1em), 11–12px ("instrument panel" labels)
+- **Doto:** `text-4xl`+ only, tight tracking, never for body text
+- **Labels:** Always Space Mono, ALL CAPS, `tracking-label` (0.06em) to `tracking-widest` (0.1em), `text-2xs`–`text-xs` ("instrument panel" labels)
 - **Data/Numbers:** Always Space Mono. Units as `text-2xs`, slightly raised, adjacent
 - **Hierarchy:** display (Doto) > heading (Space Grotesk) > label (Space Mono caps) > body (Space Grotesk). Four levels max.
 
@@ -280,14 +280,14 @@ Nothing's spacing scale is an **exact match** to the Tailwind default scale (4px
 | `3xl` — page rhythm | 64px | `p-16`, `gap-16`, `m-16` | Page-level vertical rhythm |
 | `4xl` — hero room | 96px | `p-24`, `gap-24`, `m-24` | Hero breathing room |
 
-**Touch targets (44px):** Use `min-h-11 min-w-11` (Tailwind `h-11` = `2.75rem` = 44px at default 16px root font size). All interactive elements must meet this minimum.
+**Touch targets:** Use `min-h-11 min-w-11`. All interactive elements must meet this minimum.
 
 **Common component sizes:**
-- Row padding 12px vertical → `py-3`
-- Button padding 12px/24px → `py-3 px-6`
-- Cell padding 12px/16px → `py-3 px-4`
-- Back button circle 40–44px → `w-10 h-10` or `w-11 h-11`
-- Edge inset 16px → `top-4 left-4`
+- Row padding → `py-3`
+- Button padding → `py-3 px-6`
+- Cell padding → `py-3 px-4`
+- Back button circle → `w-10 h-10` or `w-11 h-11`
+- Edge inset → `top-4 left-4`
 
 ### Dot-Matrix Motif
 
@@ -304,11 +304,11 @@ Nothing's spacing scale is an **exact match** to the Tailwind default scale (4px
 }
 ```
 
-Dots 1–2px, uniform 12–16px grid. Opacity 0.1–0.2 for backgrounds, full for data. Never as container border or button style.
+Dot diameters are 1–2px (set in `radial-gradient`, not a Tailwind border), uniform `gap-3`–`gap-4` grid. Opacity `opacity-10`–`opacity-20` for backgrounds, full for data. Never as container border or button style.
 
 ### Iconography
 
-Monoline, 1.5px stroke, no fill. 24x24 base, 20x20 live area. Round caps/joins. Color inherits text color. Max 5–6 strokes. Preferred: Lucide (thin), Phosphor (thin). Never filled or multi-color.
+Monoline, 1.5px stroke, no fill. `size-6` (24×24) base, `size-5` (20×20) live area. Round caps/joins. Color inherits text color. Max 5–6 strokes. Preferred: Lucide (thin), Phosphor (thin). Never filled or multi-color.
 
 ---
 
@@ -380,7 +380,7 @@ All buttons: `font-mono text-btn uppercase tracking-label py-3 px-6 min-h-11`.
 
 The signature data visualization. Discrete blocks — mechanical, instrument-like.
 
-**Anatomy:** Label + value above, full-width bar of discrete rectangular segments with 2px gaps below.
+**Anatomy:** Label + value above, full-width bar of discrete rectangular segments with `gap-0.5` (2px) gaps below.
 
 **Segments:** Square-ended blocks, no border-radius. Filled = solid status color. Empty = `bg-border` (dark) / `bg-neutral-200` (light).
 
@@ -392,7 +392,7 @@ The signature data visualization. Discrete blocks — mechanical, instrument-lik
 | Moderate | `--color-warning` | Caution zone |
 
 **Overflow:** Filled segments continue past "full" mark in status color (typically red).
-**Sizes:** Hero `h-4`–`h-5` (16–20px), Standard `h-2`–`h-3` (8–12px), Compact `h-1`–`h-1.5` (4–6px).
+**Sizes:** Hero `h-4`–`h-5`, Standard `h-2`–`h-3`, Compact `h-1`–`h-1.5`.
 Always pair with numeric readout. Bar = proportion, number = precision.
 
 ### Other Data Visualization
@@ -402,7 +402,7 @@ Always pair with numeric readout. Bar = proportion, number = precision.
 - **Category differentiation:** Opacity → pattern → line style → color (last resort).
 - Always show numeric value alongside any visual.
 
-**Charts:** Line `1.5–2px text-text-display`, average dashed `1px text-text-secondary`. Axis labels: `font-mono text-xs`. Grid: `border-border`, horizontal only. No area fill, no legend boxes — label lines directly.
+**Charts:** SVG line strokes: primary `stroke-[color-text-display]` (1.5–2px), average dashed `stroke-[color-text-secondary]` (1px). Axis labels: `font-mono text-xs`. Grid: `border-border`, horizontal only. No area fill, no legend boxes — label lines directly.
 
 ### Widgets (Dashboard Cards)
 - `bg-surface rounded-2xl`. Hero metric: large `font-display` or `font-mono`, left-aligned
@@ -527,7 +527,7 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
 - Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-2xs`
 - Spacing: standard utilities — `p-1 p-2 p-4 p-6 p-8 p-12 p-16 p-24` / `gap-*` / `m-*` (same scale)
 - Border radius: standard utilities — `rounded rounded-lg rounded-xl rounded-2xl rounded-full`
-- Touch targets: `min-h-11 min-w-11` (44px)
+- Touch targets: `min-h-11 min-w-11`
 
 **React example:**
 
