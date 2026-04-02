@@ -197,21 +197,21 @@ All sizes except `label` map directly to Tailwind defaults — **no custom font-
 
 | Role | Size | Tailwind utility | Line Height | Letter Spacing | Use |
 |------|------|-----------------|-------------|----------------|-----|
-| `display-xl` | 72px | `text-7xl` | `leading-none` | `tracking-[-0.03em]` | Hero numbers, time displays |
-| `display-lg` | 48px | `text-5xl` | `leading-[1.05]` | `tracking-[-0.02em]` | Section heroes, percentages |
-| `display-md` | 36px | `text-4xl` | `leading-[1.1]` | `tracking-[-0.02em]` | Page titles |
-| `heading` | 24px | `text-2xl` | `leading-tight` | `tracking-[-0.01em]` | Section headings |
+| `display-xl` | 72px | `text-7xl` | `leading-none` | `tracking-display-xl` | Hero numbers, time displays |
+| `display-lg` | 48px | `text-5xl` | `leading-display-lg` | `tracking-display` | Section heroes, percentages |
+| `display-md` | 36px | `text-4xl` | `leading-display-md` | `tracking-display` | Page titles |
+| `heading` | 24px | `text-2xl` | `leading-tight` | `tracking-heading` | Section headings |
 | `subheading` | 18px | `text-lg` | `leading-snug` | `tracking-normal` | Subsections |
 | `body` | 16px | `text-base` | `leading-normal` | `tracking-normal` | Body text |
 | `body-sm` | 14px | `text-sm` | `leading-normal` | `tracking-wide` | Secondary body |
-| `caption` | 12px | `text-xs` | `leading-[1.4]` | `tracking-[.04em]` | Timestamps, footnotes |
-| `label` | 11px | `text-[11px]` | `leading-tight` | `tracking-widest` | ALL CAPS monospace labels |
+| `caption` | 12px | `text-xs` | `leading-caption` | `tracking-caption` | Timestamps, footnotes |
+| `label` | 11px | `text-2xs` | `leading-tight` | `tracking-widest` | ALL CAPS monospace labels |
 
 ### Typographic Rules
 
 - **Doto:** 36px+ only, tight tracking, never for body text
-- **Labels:** Always Space Mono, ALL CAPS, 0.06–0.1em spacing, 11–12px ("instrument panel" labels)
-- **Data/Numbers:** Always Space Mono. Units as `text-[11px]`, slightly raised, adjacent
+- **Labels:** Always Space Mono, ALL CAPS, `tracking-label`–`tracking-widest` (0.06–0.1em), 11–12px ("instrument panel" labels)
+- **Data/Numbers:** Always Space Mono. Units as `text-2xs`, slightly raised, adjacent
 - **Hierarchy:** display (Doto) > heading (Space Grotesk) > label (Space Mono caps) > body (Space Grotesk). Four levels max.
 
 ---
@@ -280,7 +280,7 @@ Nothing's spacing scale is an **exact match** to the Tailwind default scale (4px
 | `3xl` — page rhythm | 64px | `p-16`, `gap-16`, `m-16` | Page-level vertical rhythm |
 | `4xl` — hero room | 96px | `p-24`, `gap-24`, `m-24` | Hero breathing room |
 
-**Touch targets (44px):** Use `min-h-11 min-w-11` (Tailwind `h-11` = `2.75rem` = 44px at default 16px root font size) or `min-h-[44px] min-w-[44px]` for pixel precision. All interactive elements must meet this minimum.
+**Touch targets (44px):** Use `min-h-11 min-w-11` (Tailwind `h-11` = `2.75rem` = 44px at default 16px root font size). All interactive elements must meet this minimum.
 
 **Common component sizes:**
 - Row padding 12px vertical → `py-3`
@@ -328,25 +328,25 @@ Monoline, 1.5px stroke, no fill. 24x24 base, 20x20 live area. Round caps/joins. 
 | Ghost | transparent | none | `text-text-secondary` | — |
 | Destructive | transparent | `border border-accent` | `text-accent` | `rounded-full` |
 
-All buttons: `font-mono text-[13px] uppercase tracking-[0.06em] py-3 px-6 min-h-11`. (`text-[13px]` has no standard Tailwind equivalent — use arbitrary value; nearest are `text-xs`/12px or `text-sm`/14px.)
+All buttons: `font-mono text-btn uppercase tracking-label py-3 px-6 min-h-11`.
 
 ### Inputs
 - Underline preferred (`border-b border-border-visible`) or full border `rounded-lg`
-- Label above: `font-mono text-[11px] uppercase text-text-secondary`
+- Label above: `font-mono text-2xs uppercase text-text-secondary`
 - Focus: border → `border-text-primary`. Error: border → `border-accent`, message below in `text-accent`
 - Data-entry fields: `font-mono` for input text
 
 ### Lists / Data Rows
 - Dividers: `border-b border-border` full-width. Row padding: `py-3`–`py-4`
-- Left: label (`font-mono uppercase text-[11px] text-text-secondary`). Right: value (`text-text-primary`)
+- Left: label (`font-mono uppercase text-2xs text-text-secondary`). Right: value (`text-text-primary`)
 - Never alternating row backgrounds. Use dividers.
 
-**Stat rows:** Label left (`font-mono uppercase text-[11px] text-text-secondary`), value right (color = status color), unit adjacent in `text-[11px]`. Trend arrow same color as value.
+**Stat rows:** Label left (`font-mono uppercase text-2xs text-text-secondary`), value right (color = status color), unit adjacent in `text-2xs`. Trend arrow same color as value.
 
 **Hierarchical rows:** Sub-items indented `pl-4`–`pl-6`, same divider treatment. No tree lines or expand/collapse — indentation IS the hierarchy.
 
 ### Tables / Data Grids
-- Header: `font-mono uppercase text-[11px]`, bottom `border-b border-border-visible`
+- Header: `font-mono uppercase text-2xs`, bottom `border-b border-border-visible`
 - Cell text: `font-mono` numeric, `font-body` text. Cell padding: `py-3 px-4`
 - Numbers right, text left. No zebra striping, no cell backgrounds.
 - Active row: `bg-surface-raised` background, left `border-l-2 border-accent` indicator
@@ -364,7 +364,7 @@ All buttons: `font-mono text-[13px] uppercase tracking-[0.06em] py-3 px-6 min-h-
 ### Segmented Control
 - Container: `border border-border-visible`, `rounded-full` or `rounded-lg`
 - Active: `bg-text-display text-black`. Inactive: `bg-transparent text-text-secondary`
-- Text: `font-mono uppercase text-[11px]`. Height: `h-9`–`h-11`. Transition: `duration-200 ease-out`
+- Text: `font-mono uppercase text-2xs`. Height: `h-9`–`h-11`. Transition: `duration-200 ease-out`
 - Max 2–4 segments
 
 ### Date / Period Navigation
@@ -406,14 +406,14 @@ Always pair with numeric readout. Bar = proportion, number = precision.
 
 ### Widgets (Dashboard Cards)
 - `bg-surface rounded-2xl`. Hero metric: large `font-display` or `font-mono`, left-aligned
-- Unit: `text-[11px]`, adjacent. Category: `font-mono uppercase text-[11px]` top-left
+- Unit: `text-2xs`, adjacent. Category: `font-mono uppercase text-2xs` top-left
 - Instrument gauges: compass, thermometer, dial motifs
 
 ### Overlays & Layering
 
 No shadows. Layering through background contrast and borders.
 
-- **Modals:** Backdrop `bg-black/80`, dialog `bg-surface border border-border-visible rounded-2xl`, centered `max-w-[480px]`. Close: `[ X ]` top-right ghost button.
+- **Modals:** Backdrop `bg-black/80`, dialog `bg-surface border border-border-visible rounded-2xl`, centered `max-w-modal`. Close: `[ X ]` top-right ghost button.
 - **Bottom sheets:** `bg-surface`, `w-8 h-0.5` handle bar centered, `rounded-t-2xl`, drag-to-dismiss. Full-page sheets: title centered + dismiss button right, sections with `text-text-secondary` headings.
 - **Dropdowns:** `bg-surface-raised border border-border-visible rounded-lg`, items `min-h-11`. Selected: left `border-l-2 border-accent`. No shadow.
 - **Toasts:** None. Use inline status text: `[SAVED]`, `[ERROR: ...]`. `font-mono text-xs`, near trigger.
@@ -441,9 +441,26 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
   --font-body:    "Space Grotesk", "DM Sans", system-ui, sans-serif;
   --font-mono:    "Space Mono", "JetBrains Mono", "SF Mono", monospace;
 
-  /* ── Font size override — only 11px has no standard Tailwind equivalent ── */
+  /* ── Font sizes (custom — no standard Tailwind equivalent) ─────────────── */
   /* All other sizes: text-xs(12) text-sm(14) text-base(16) text-lg(18)    */
   /*                  text-2xl(24) text-4xl(36) text-5xl(48) text-7xl(72)  */
+  --font-size-2xs: 0.6875rem;   /* 11px — label / instrument-panel caps     */
+  --font-size-btn: 0.8125rem;   /* 13px — button / interactive label text   */
+
+  /* ── Line heights (custom — no standard Tailwind equivalent) ────────────── */
+  --leading-display-lg: 1.05;   /* display-lg: 48px headings                */
+  --leading-display-md: 1.1;    /* display-md: 36px page titles             */
+  --leading-caption: 1.4;       /* caption: 12px timestamps / footnotes     */
+
+  /* ── Letter spacing (custom — no standard Tailwind equivalent) ──────────── */
+  --tracking-display-xl: -0.03em;  /* display-xl: 72px hero numbers         */
+  --tracking-display: -0.02em;     /* display-lg / display-md               */
+  --tracking-heading: -0.01em;     /* heading: 24px section headings        */
+  --tracking-caption: 0.04em;      /* caption: 12px timestamps / footnotes  */
+  --tracking-label: 0.06em;        /* labels / buttons: monospace ALL CAPS  */
+
+  /* ── Max width ──────────────────────────────────────────────────────────── */
+  --max-width-modal: 30rem;     /* 480px — modal dialog max width           */
 
   /* ── Colors (dark mode defaults) ──────────────────────────────────────── */
   /* Nothing's grayscale is a specific pitch-black ramp; not a Tailwind     */
@@ -507,7 +524,7 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
 **Utility class conventions:**
 - Colors: `bg-surface`, `bg-surface-raised`, `text-text-primary`, `text-text-secondary`, `text-text-display`, `text-text-disabled`, `border-border`, `border-border-visible`, `text-accent`, `text-success`, `text-warning`
 - Fonts: `font-display` (Doto), `font-body` (Space Grotesk), `font-mono` (Space Mono)
-- Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-[11px]`
+- Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-2xs`
 - Spacing: standard utilities — `p-1 p-2 p-4 p-6 p-8 p-12 p-16 p-24` / `gap-*` / `m-*` (same scale)
 - Border radius: standard utilities — `rounded rounded-lg rounded-xl rounded-2xl rounded-full`
 - Touch targets: `min-h-11 min-w-11` (44px)
