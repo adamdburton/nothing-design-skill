@@ -147,7 +147,7 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 - No parallax, scroll-jacking, or gratuitous animation
 - No spring/bounce easing. Use subtle ease-out only.
 - No border-radius > `rounded-2xl` on cards. Buttons are pill (`rounded-full`) or technical (`rounded`–`rounded-lg`).
-- Data visualization: differentiate with **opacity** (100%/60%/30%) or **pattern** (solid/striped/dotted) before introducing color.
+- Data visualization: differentiate with **opacity** (`opacity-100` / `opacity-60` / `opacity-30`) or **pattern** (solid/striped/dotted) before introducing color.
 
 ---
 
@@ -165,8 +165,8 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 
 ## 5. MOTION & INTERACTION
 
-- **Duration:** 150–250ms micro, 300–400ms transitions
-- **Easing:** `cubic-bezier(0.25, 0.1, 0.25, 1)` — subtle ease-out. No spring/bounce.
+- **Duration:** Micro interactions `duration-150`–`duration-200`, page/panel transitions `duration-300`–`duration-400`
+- **Easing:** `ease-out` (Tailwind standard — maps to `cubic-bezier(0, 0, 0.2, 1)`). No spring/bounce.
 - Prefer opacity over position. Elements fade, don't slide.
 - Hover: border/text brightens. No scale, no shadows.
 - No parallax, scroll-jacking, gratuitous animation.
@@ -193,7 +193,7 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 
 ### Type Scale
 
-All sizes except `label` map directly to Tailwind defaults — **no custom font-size tokens needed**. Use standard `text-*` utilities. Only `label` (11px) requires a custom token — defined as `text-2xs` in `@theme`.
+All sizes except `label` and `btn` map directly to Tailwind defaults — use standard `text-*` utilities. Only `label` (11px → `text-2xs`) and `btn` (13px → `text-btn`) require custom tokens defined in `@theme`.
 
 | Role | Size | Tailwind utility | Line Height | Letter Spacing | Use |
 |------|------|-----------------|-------------|----------------|-----|
@@ -304,7 +304,7 @@ Nothing's spacing scale is an **exact match** to the Tailwind default scale (4px
 }
 ```
 
-Dot diameters are 1–2px (set in `radial-gradient`, not a Tailwind border), uniform `gap-3`–`gap-4` grid. Opacity `opacity-10`–`opacity-20` for backgrounds, full for data. Never as container border or button style.
+Dot diameters are 1–2px (set in `radial-gradient`, not a Tailwind utility). Grid spacing is set via `background-size` (12px / 16px in the CSS examples above). Opacity `opacity-10`–`opacity-20` for backgrounds, full for data. Never as container border or button style.
 
 ### Iconography
 
@@ -488,6 +488,11 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
   /* ── Border radius — NO custom tokens needed ──────────────────────────── */
   /* 4px=rounded  8px=rounded-lg  12px=rounded-xl  16px=rounded-2xl        */
   /* 999px/pill=rounded-full                                                */
+
+  /* ── Transition duration — NO custom tokens needed ────────────────────── */
+  /* micro 150ms=duration-150  200ms=duration-200                          */
+  /* transition 300ms=duration-300  400ms=duration-400                     */
+  /* easing: ease-out (Tailwind default)                                    */
 }
 
 /* Light mode overrides */
@@ -527,6 +532,8 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
 - Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-2xs`
 - Spacing: standard utilities — `p-1 p-2 p-4 p-6 p-8 p-12 p-16 p-24` / `gap-*` / `m-*` (same scale)
 - Border radius: standard utilities — `rounded rounded-lg rounded-xl rounded-2xl rounded-full`
+- Transitions: standard utilities — `transition-colors duration-150 ease-out` (micro) / `transition-all duration-300 ease-out` (panels)
+- Opacity: standard utilities — `opacity-100 opacity-60 opacity-40 opacity-30 opacity-20 opacity-10`
 - Touch targets: `min-h-11 min-w-11`
 
 **React example:**
