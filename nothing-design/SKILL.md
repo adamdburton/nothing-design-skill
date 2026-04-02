@@ -197,20 +197,20 @@ All sizes except `label` and `btn` map directly to Tailwind defaults — use sta
 
 | Role | Size | Tailwind utility | Line Height | Letter Spacing | Use |
 |------|------|-----------------|-------------|----------------|-----|
-| `display-xl` | 72px | `text-7xl` | `leading-none` | `tracking-display-xl` | Hero numbers, time displays |
-| `display-lg` | 48px | `text-5xl` | `leading-display-lg` | `tracking-display` | Section heroes, percentages |
-| `display-md` | 36px | `text-4xl` | `leading-display-md` | `tracking-display` | Page titles |
-| `heading` | 24px | `text-2xl` | `leading-tight` | `tracking-heading` | Section headings |
+| `display-xl` | 72px | `text-7xl` | `leading-none` | `tracking-tighter` | Hero numbers, time displays |
+| `display-lg` | 48px | `text-5xl` | `leading-[1.05]` | `tracking-tight` | Section heroes, percentages |
+| `display-md` | 36px | `text-4xl` | `leading-[1.1]` | `tracking-tight` | Page titles |
+| `heading` | 24px | `text-2xl` | `leading-tight` | `tracking-tight` | Section headings |
 | `subheading` | 18px | `text-lg` | `leading-snug` | `tracking-normal` | Subsections |
 | `body` | 16px | `text-base` | `leading-normal` | `tracking-normal` | Body text |
 | `body-sm` | 14px | `text-sm` | `leading-normal` | `tracking-wide` | Secondary body |
-| `caption` | 12px | `text-xs` | `leading-caption` | `tracking-caption` | Timestamps, footnotes |
+| `caption` | 12px | `text-xs` | `leading-snug` | `tracking-wide` | Timestamps, footnotes |
 | `label` | 11px | `text-2xs` | `leading-tight` | `tracking-widest` | ALL CAPS monospace labels |
 
 ### Typographic Rules
 
 - **Doto:** `text-4xl`+ only, tight tracking, never for body text
-- **Labels:** Always Space Mono, ALL CAPS, `tracking-label` (0.06em) to `tracking-widest` (0.1em), `text-2xs`–`text-xs` ("instrument panel" labels)
+- **Labels:** Always Space Mono, ALL CAPS, `tracking-wider` (0.06em) to `tracking-widest` (0.1em), `text-2xs`–`text-xs` ("instrument panel" labels)
 - **Data/Numbers:** Always Space Mono. Units as `text-2xs`, slightly raised, adjacent
 - **Hierarchy:** display (Doto) > heading (Space Grotesk) > label (Space Mono caps) > body (Space Grotesk). Four levels max.
 
@@ -328,7 +328,7 @@ Monoline, 1.5px stroke, no fill. `size-6` (24×24) base, `size-5` (20×20) live 
 | Ghost | transparent | none | `text-text-secondary` | — |
 | Destructive | transparent | `border border-accent` | `text-accent` | `rounded-full` |
 
-All buttons: `font-mono text-btn uppercase tracking-label py-3 px-6 min-h-11`.
+All buttons: `font-mono text-btn uppercase tracking-wider py-3 px-6 min-h-11`.
 
 ### Inputs
 - Underline preferred (`border-b border-border-visible`) or full border `rounded-lg`
@@ -447,17 +447,18 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
   --font-size-2xs: 0.6875rem;   /* 11px — label / instrument-panel caps     */
   --font-size-btn: 0.8125rem;   /* 13px — button / interactive label text   */
 
-  /* ── Line heights (custom — no standard Tailwind equivalent) ────────────── */
-  --leading-display-lg: 1.05;   /* display-lg: 48px headings                */
-  --leading-display-md: 1.1;    /* display-md: 36px page titles             */
-  --leading-caption: 1.4;       /* caption: 12px timestamps / footnotes     */
+  /* ── Line heights — NO custom tokens needed ──────────────────────────────── */
+  /* display-lg (1.05) and display-md (1.1) use Tailwind arbitrary values:    */
+  /* leading-[1.05]  leading-[1.1]                                            */
+  /* caption (1.4) ≈ leading-snug (1.375) — use standard utility             */
 
-  /* ── Letter spacing (custom — no standard Tailwind equivalent) ──────────── */
-  --tracking-display-xl: -0.03em;  /* display-xl: 72px hero numbers         */
-  --tracking-display: -0.02em;     /* display-lg / display-md               */
-  --tracking-heading: -0.01em;     /* heading: 24px section headings        */
-  --tracking-caption: 0.04em;      /* caption: 12px timestamps / footnotes  */
-  --tracking-label: 0.06em;        /* labels / buttons: monospace ALL CAPS  */
+  /* ── Letter spacing (override Tailwind defaults — Nothing scale) ─────────── */
+  /* Standard Tailwind classes still apply; values adjusted for the type scale */
+  --tracking-tighter: -0.03em;  /* display-xl 72px    (Tailwind default: -0.05em) */
+  --tracking-tight:   -0.02em;  /* display-lg/md/heading (Tailwind default: -0.025em) */
+  --tracking-wide:     0.04em;  /* caption / body-sm  (Tailwind default:  0.025em) */
+  --tracking-wider:    0.06em;  /* labels / buttons   (Tailwind default:  0.05em) */
+  /* tracking-normal (0em) and tracking-widest (0.1em): use Tailwind defaults  */
 
   /* ── Max width ──────────────────────────────────────────────────────────── */
   --max-width-modal: 30rem;     /* 480px — modal dialog max width           */
@@ -530,6 +531,8 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
 - Colors: `bg-surface`, `bg-surface-raised`, `text-text-primary`, `text-text-secondary`, `text-text-display`, `text-text-disabled`, `border-border`, `border-border-visible`, `text-accent`, `text-success`, `text-warning`
 - Fonts: `font-display` (Doto), `font-body` (Space Grotesk), `font-mono` (Space Mono)
 - Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-2xs`
+- Letter spacing: standard utilities (values overridden in `@theme`) — `tracking-tighter tracking-tight tracking-normal tracking-wide tracking-wider tracking-widest`
+- Line heights: standard utilities — `leading-none leading-[1.05] leading-[1.1] leading-tight leading-snug leading-normal`; arbitrary values for display sizes
 - Spacing: standard utilities — `p-1 p-2 p-4 p-6 p-8 p-12 p-16 p-24` / `gap-*` / `m-*` (same scale)
 - Border radius: standard utilities — `rounded rounded-lg rounded-xl rounded-2xl rounded-full`
 - Transitions: standard utilities — `transition-colors duration-150 ease-out` (micro) / `transition-all duration-300 ease-out` (panels)
