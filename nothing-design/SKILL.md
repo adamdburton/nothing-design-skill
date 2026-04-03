@@ -183,8 +183,6 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 | **Body / UI** | `"Space Grotesk"` | `"DM Sans", system-ui, sans-serif` | Light 300, Regular 400, Medium 500, Bold 700 |
 | **Data / Labels** | `"Space Mono"` | `"JetBrains Mono", "SF Mono", monospace` | Regular 400, Bold 700 |
 
-**Why these fonts:** Doto = variable dot-matrix (closest to NDot 57). Space Grotesk + Space Mono by Colophon Foundry — same foundry as Nothing's actual typefaces. Shared design DNA.
-
 **Google Fonts import:**
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -265,8 +263,6 @@ All sizes except `label` and `btn` map directly to Tailwind defaults — use sta
 ---
 
 ## 8. SPACING
-
-Nothing's spacing scale is an **exact match** to the Tailwind default scale (4px base unit). **No custom spacing tokens are needed in `@theme`.** Use standard Tailwind spacing utilities throughout.
 
 | Semantic meaning | Value | Tailwind utilities | Use |
 |-----------------|-------|--------------------|-----|
@@ -426,11 +422,9 @@ No shadows. Layering through background contrast and borders.
 
 ---
 
-## 10. PLATFORM OUTPUT
+## 10. Tailwind v4 Setup
 
-### Tailwind v4 (preferred for web/React)
-
-Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` block — no `tailwind.config.js` needed.
+Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` block.
 
 ```css
 @import "tailwindcss";
@@ -441,73 +435,40 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
   --font-body:    "Space Grotesk", "DM Sans", system-ui, sans-serif;
   --font-mono:    "Space Mono", "JetBrains Mono", "SF Mono", monospace;
 
-  /* ── Font sizes (custom — no standard Tailwind equivalent) ─────────────── */
-  /* All other sizes: text-xs(12) text-sm(14) text-base(16) text-lg(18)    */
-  /*                  text-2xl(24) text-4xl(36) text-5xl(48) text-7xl(72)  */
-  --font-size-2xs: 0.6875rem;   /* 11px — label / instrument-panel caps     */
-  --font-size-btn: 0.8125rem;   /* 13px — button / interactive label text   */
+  --font-size-2xs: 0.6875rem;
+  --font-size-btn: 0.8125rem;
 
-  /* ── Line heights — NO custom tokens needed ──────────────────────────────── */
-  /* display-lg (1.05) and display-md (1.1) use Tailwind arbitrary values:    */
-  /* leading-[1.05]  leading-[1.1]                                            */
-  /* caption (1.4) ≈ leading-snug (1.375) — use standard utility             */
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.02em;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.06em;
 
-  /* ── Letter spacing (override Tailwind defaults — Nothing scale) ─────────── */
-  /* Standard Tailwind classes still apply; values adjusted for the type scale */
-  --tracking-tighter: -0.03em;  /* display-xl 72px    (Tailwind default: -0.05em) */
-  --tracking-tight:   -0.02em;  /* display-lg/md/heading (Tailwind default: -0.025em) */
-  --tracking-wide:     0.04em;  /* caption / body-sm  (Tailwind default:  0.025em) */
-  --tracking-wider:    0.06em;  /* labels / buttons   (Tailwind default:  0.05em) */
-  /* tracking-normal (0em) and tracking-widest (0.1em): use Tailwind defaults  */
-
-  /* ── Max width — NO custom tokens needed ────────────────────────────────── */
-  /* 30rem (480px) has no standard Tailwind match — use max-w-[30rem] directly */
-
-  /* ── Colors (dark mode defaults) ──────────────────────────────────────── */
-  /* Nothing's grayscale is a specific pitch-black ramp; not a Tailwind     */
-  /* palette match — all custom. Accent/status are brand values.            */
-  --color-black:          #000000;   /* ≈ Tailwind `black`; OLED background  */
-  --color-surface:        #111111;   /* darker than neutral-900 (#171717)   */
-  --color-surface-raised: #1A1A1A;   /* cf. neutral-900 (#171717)           */
-  --color-border:         #222222;   /* cf. neutral-800 (#262626)           */
-  --color-border-visible: #333333;   /* cf. neutral-700 (#404040)           */
-  --color-text-disabled:  #666666;   /* cf. neutral-500 (#737373)           */
-  --color-text-secondary: #999999;   /* cf. neutral-400 (#a3a3a3)           */
-  --color-text-primary:   #E8E8E8;   /* cf. neutral-200 (#e5e5e5)           */
-  --color-text-display:   #FFFFFF;   /* ≈ Tailwind `white`                  */
-  --color-accent:         #D71921;   /* Nothing brand red; cf. red-600 (#dc2626)  */
-  /* --color-accent-subtle: not needed in Tailwind — use bg-accent/15 opacity modifier */
-  --color-success:        #4A9E5C;   /* cf. green-600 (#16a34a)             */
-  --color-warning:        #D4A843;   /* cf. amber-400 (#fbbf24)             */
-  --color-interactive:    #5B9BF6;   /* dark mode; cf. blue-400 (#60a5fa)   */
-
-  /* ── Spacing — NO custom tokens needed ────────────────────────────────── */
-  /* Nothing's 4px-base scale is identical to Tailwind defaults:            */
-  /* 2px=0.5  4px=1  8px=2  12px=3  16px=4  24px=6  32px=8               */
-  /* 44px=11  48px=12  64px=16  96px=24                                    */
-
-  /* ── Border radius — NO custom tokens needed ──────────────────────────── */
-  /* 4px=rounded  8px=rounded-lg  12px=rounded-xl  16px=rounded-2xl        */
-  /* 999px/pill=rounded-full                                                */
-
-  /* ── Transition duration — NO custom tokens needed ────────────────────── */
-  /* micro 150ms=duration-150  200ms=duration-200                          */
-  /* transition 300ms=duration-300  400ms=duration-400                     */
-  /* easing: ease-out (Tailwind default)                                    */
+  --color-black:          #000000;
+  --color-surface:        #111111;
+  --color-surface-raised: #1A1A1A;
+  --color-border:         #222222;
+  --color-border-visible: #333333;
+  --color-text-disabled:  #666666;
+  --color-text-secondary: #999999;
+  --color-text-primary:   #E8E8E8;
+  --color-text-display:   #FFFFFF;
+  --color-accent:         #D71921;
+  --color-success:        #4A9E5C;
+  --color-warning:        #D4A843;
+  --color-interactive:    #5B9BF6;
 }
-
 /* Light mode overrides */
 @media (prefers-color-scheme: light) {
   @theme {
-    --color-black:          #F5F5F5;   /* cf. neutral-100 (#f5f5f5) — exact match */
-    --color-surface:        #FFFFFF;   /* ≈ white */
-    --color-surface-raised: #F0F0F0;   /* ≈ neutral-100 */
-    --color-border:         #E8E8E8;   /* ≈ neutral-200 */
-    --color-border-visible: #CCCCCC;   /* ≈ neutral-300 */
+    --color-black:          #F5F5F5;
+    --color-surface:        #FFFFFF;
+    --color-surface-raised: #F0F0F0;
+    --color-border:         #E8E8E8;
+    --color-border-visible: #CCCCCC;
     --color-text-disabled:  #999999;
     --color-text-secondary: #666666;
     --color-text-primary:   #1A1A1A;
-    --color-text-display:   #000000;   /* ≈ black */
+    --color-text-display:   #000000;
     --color-interactive:    #007AFF;
   }
 }
@@ -529,15 +490,14 @@ Load fonts via Google Fonts (see Section 6). Define all tokens in a `@theme` blo
 
 **Utility class conventions:**
 - Colors: `bg-surface`, `bg-surface-raised`, `text-text-primary`, `text-text-secondary`, `text-text-display`, `text-text-disabled`, `border-border`, `border-border-visible`, `text-accent`, `text-success`, `text-warning`; accent tint: `bg-accent/15`
-- Max widths: no custom tokens — use arbitrary `max-w-[30rem]` for modals
+- Max widths: `max-w-[30rem]` for modals
 - Fonts: `font-display` (Doto), `font-body` (Space Grotesk), `font-mono` (Space Mono)
 - Type sizes: standard utilities — `text-7xl text-5xl text-4xl text-2xl text-lg text-base text-sm text-xs text-2xs`
-- Letter spacing: standard utilities (values overridden in `@theme`) — `tracking-tighter tracking-tight tracking-normal tracking-wide tracking-wider tracking-widest`
-- Line heights: standard utilities — `leading-none leading-[1.05] leading-[1.1] leading-tight leading-snug leading-normal`; arbitrary values for display sizes
-- Spacing: standard utilities — `p-1 p-2 p-4 p-6 p-8 p-12 p-16 p-24` / `gap-*` / `m-*` (same scale)
-- Border radius: standard utilities — `rounded rounded-lg rounded-xl rounded-2xl rounded-full`
-- Transitions: standard utilities — `transition-colors duration-150 ease-out` (micro) / `transition-all duration-300 ease-out` (panels)
-- Opacity: standard utilities — `opacity-100 opacity-60 opacity-40 opacity-30 opacity-20 opacity-10`
+- Letter spacing: `tracking-tighter tracking-tight tracking-normal tracking-wide tracking-wider tracking-widest`
+- Line heights: `leading-none leading-[1.05] leading-[1.1] leading-tight leading-snug leading-normal`
+- Spacing: `p-1 p-2 p-4 p-6 p-8 p-12 p-16 p-24` / `gap-*` / `m-*`
+- Transitions: `transition-colors duration-150 ease-out` / `transition-all duration-300 ease-out`
+- Opacity: `opacity-100` to `opacity-10`
 - Touch targets: `min-h-11 min-w-11`
 
 **React example:**
@@ -555,66 +515,4 @@ export function StatRow({ label, value, unit }: StatRowProps) {
   );
 }
 ```
-
-### Plain CSS (no Tailwind)
-
-```css
-:root {
-  /* Colors — dark mode defaults */
-  --color-black:          #000000;
-  --color-surface:        #111111;
-  --color-surface-raised: #1A1A1A;
-  --color-border:         #222222;
-  --color-border-visible: #333333;
-  --color-text-disabled:  #666666;
-  --color-text-secondary: #999999;
-  --color-text-primary:   #E8E8E8;
-  --color-text-display:   #FFFFFF;
-  --color-accent:         #D71921;
-  --color-accent-subtle:  rgba(215,25,33,0.15);
-  --color-success:        #4A9E5C;
-  --color-warning:        #D4A843;
-  --color-interactive:    #5B9BF6;
-
-  /* Spacing — use standard values; 4px base unit matches Tailwind defaults */
-  /* 2px  4px  8px  12px  16px  24px  32px  44px  48px  64px  96px        */
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-black: #F5F5F5; --color-surface: #FFFFFF; --color-surface-raised: #F0F0F0;
-    --color-border: #E8E8E8; --color-border-visible: #CCCCCC;
-    --color-text-disabled: #999999; --color-text-secondary: #666666;
-    --color-text-primary: #1A1A1A; --color-text-display: #000000;
-    --color-interactive: #007AFF;
-  }
-}
-```
-
-### SwiftUI / iOS
-
-Register fonts in Info.plist, bundle `.ttf` files. Use `@Environment(\.colorScheme)` for mode switching.
-
-```swift
-extension Color {
-    static let ndBlack          = Color(hex: "000000")
-    static let ndSurface        = Color(hex: "111111")
-    static let ndSurfaceRaised  = Color(hex: "1A1A1A")
-    static let ndBorder         = Color(hex: "222222")
-    static let ndBorderVisible  = Color(hex: "333333")
-    static let ndTextDisabled   = Color(hex: "666666")
-    static let ndTextSecondary  = Color(hex: "999999")
-    static let ndTextPrimary    = Color(hex: "E8E8E8")
-    static let ndTextDisplay    = Color.white
-    static let ndAccent         = Color(hex: "D71921")
-    static let ndSuccess        = Color(hex: "4A9E5C")
-    static let ndWarning        = Color(hex: "D4A843")
-    static let ndInteractive    = Color(hex: "5B9BF6")
-}
-```
-
-Light mode values from the Dark/Light table in Section 7. Fonts via `.custom("Doto"/"SpaceGrotesk-Regular"/"SpaceMono-Regular", size:)`.
-
-### Paper (Design Tool)
-
-Direct hex values (no CSS variables). Dark mode as default canvas, light mode as separate artboard. Values from Section 7.
 
